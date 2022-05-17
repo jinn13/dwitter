@@ -1,4 +1,6 @@
 import Expenses from "./components/Expenses/Expenses";
+import NewExpense from "./components/NewExpense/NewExpense";
+import ExpensesFilter from "./components/Expenses/ExpensesFilter";
 
 const App = () => {
   const expenses = [
@@ -18,7 +20,7 @@ const App = () => {
       id: "e3",
       title: "Car Insurance",
       amount: 294.67,
-      date: new Date(2021, 2, 28),
+      date: new Date(2019, 2, 28),
     },
     {
       id: "e4",
@@ -28,9 +30,25 @@ const App = () => {
     },
   ];
 
+  const addExpensehandler = (expense) => {
+    console.log("In App.js");
+    console.log(expense);
+  };
+
+  const changeDate = (year) => {
+    console.log(year);
+
+    for (let index = 0; index < expenses.length; index++) {
+      if (year == expenses[index].date.getFullYear()) {
+        console.log(expenses[index].date.getFullYear());
+      }
+    }
+  };
+
   return (
     <div>
-      <h2>Let's get started!</h2>
+      <NewExpense onAddExpense={addExpensehandler} />
+      <ExpensesFilter onSaveDate={changeDate} />
       <Expenses items={expenses} />
     </div>
   );
