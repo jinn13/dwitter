@@ -1,6 +1,5 @@
 import Expenses from "./components/Expenses/Expenses";
 import NewExpense from "./components/NewExpense/NewExpense";
-import ExpensesFilter from "./components/Expenses/ExpensesFilter";
 
 const App = () => {
   const expenses = [
@@ -35,20 +34,9 @@ const App = () => {
     console.log(expense);
   };
 
-  const changeDate = (year) => {
-    console.log(year);
-
-    for (let index = 0; index < expenses.length; index++) {
-      if (year == expenses[index].date.getFullYear()) {
-        console.log(expenses[index].date.getFullYear());
-      }
-    }
-  };
-
   return (
     <div>
       <NewExpense onAddExpense={addExpensehandler} />
-      <ExpensesFilter onSaveDate={changeDate} />
       <Expenses items={expenses} />
     </div>
   );
