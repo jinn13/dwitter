@@ -1,0 +1,19 @@
+.button {
+  font: inherit;
+  border: 1px solid pink;
+  background: pink;
+  color: white;
+  padding: 0.25rem 1rem;
+  cursor: pointer;
+  border-radius: 10px;
+}
+
+.button:hover,
+.button:active {
+  background: hotpink;
+  border-color: hotpink;
+}
+
+.button:focus {
+  outline: none;
+}
