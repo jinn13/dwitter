@@ -12,9 +12,27 @@ const Login = (props) => {
   const [formIsValid, setFormIsValid] = useState(false);
 
   useEffect(() => {
-    setFormIsValid(
-      enteredEmail.includes("@") && enteredPassword.trim().length > 6
-    );
+    console.log("EFFECT running");
+
+    return () => {
+      console.log("★EFFECT CLEANUP★");
+    };
+  }, [enteredPassword]);
+
+  useEffect(() => {
+    const identifier = setTimeout(() => {
+      // 클린업 함수로 인해 오직 한번만 실행된다.
+      console.log("Checking fiorm validity~!~!");
+      setFormIsValid(
+        enteredEmail.includes("@") && enteredPassword.trim().length > 6
+      );
+    }, 500);
+
+    // ↓ 클린업 함수 : 모든 새 sideEffect 함수가 실행되기 전 & 컴포넌트가 제거되기 전에 실행됨
+    return () => {
+      console.log("cleanup");
+      clearTimeout(identifier);
+    };
   }, [enteredEmail, enteredPassword]);
 
   const emailChangeHandler = (event) => {
