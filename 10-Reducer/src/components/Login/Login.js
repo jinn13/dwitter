@@ -19,24 +19,28 @@ const Login = (props) => {
     };
   }, [enteredPassword]);
 
-  useEffect(() => {
-    const identifier = setTimeout(() => {
-      // 클린업 함수로 인해 오직 한번만 실행된다.
-      console.log("Checking fiorm validity~!~!");
-      setFormIsValid(
-        enteredEmail.includes("@") && enteredPassword.trim().length > 6
-      );
-    }, 500);
+  // useEffect(() => {
+  //   const identifier = setTimeout(() => {
+  //     // 클린업 함수로 인해 오직 한번만 실행된다.
+  //     console.log("Checking fiorm validity~!~!");
+  //     setFormIsValid(
+  //       enteredEmail.includes("@") && enteredPassword.trim().length > 6
+  //     );
+  //   }, 500);
 
-    // ↓ 클린업 함수 : 모든 새 sideEffect 함수가 실행되기 전 & 컴포넌트가 제거되기 전에 실행됨
-    return () => {
-      console.log("cleanup");
-      clearTimeout(identifier);
-    };
-  }, [enteredEmail, enteredPassword]);
+  //   // ↓ 클린업 함수 : 모든 새 sideEffect 함수가 실행되기 전 & 컴포넌트가 제거되기 전에 실행됨
+  //   return () => {
+  //     console.log("cleanup");
+  //     clearTimeout(identifier);
+  //   };
+  // }, [enteredEmail, enteredPassword]);
 
   const emailChangeHandler = (event) => {
     setEnteredEmail(event.target.value);
+
+    setFormIsValid(
+      event.target.value.includes("@") && enteredPassword.trim().length > 6
+    );
   };
 
   const passwordChangeHandler = (event) => {
@@ -68,7 +72,7 @@ const Login = (props) => {
             emailIsValid === false ? classes.invalid : ""
           }`}
         >
-          <label htmlFor="email">E-Mail</label>
+          <label htmlFor="email">이메일</label>
           <input
             type="email"
             id="email"
@@ -82,7 +86,7 @@ const Login = (props) => {
             passwordIsValid === false ? classes.invalid : ""
           }`}
         >
-          <label htmlFor="password">Password</label>
+          <label htmlFor="password">비밀번호</label>
           <input
             type="password"
             id="password"
