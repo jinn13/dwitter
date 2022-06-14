@@ -49,34 +49,35 @@ const Login = (props) => {
     };
   }, []);
 
-  // useEffect(() => {
-  //   const identifier = setTimeout(() => {
-  //     // 클린업 함수로 인해 오직 한번만 실행된다.
-  //     console.log("Checking fiorm validity~!~!");
-  //     setFormIsValid(
-  //       enteredEmail.includes("@") && enteredPassword.trim().length > 6
-  //     );
-  //   }, 500);
+  const { isValid: emailIsValid } = emailState;
+  const { isValid: passwordIsValid } = passwordState;
 
-  //   // ↓ 클린업 함수 : 모든 새 sideEffect 함수가 실행되기 전 & 컴포넌트가 제거되기 전에 실행됨
-  //   return () => {
-  //     console.log("cleanup");
-  //     clearTimeout(identifier);
-  //   };
-  // }, [enteredEmail, enteredPassword]);
+  useEffect(() => {
+    const identifier = setTimeout(() => {
+      // 클린업 함수로 인해 오직 한번만 실행된다.
+      console.log("Checking fiorm validity~!~!");
+      setFormIsValid(emailIsValid && passwordIsValid);
+    }, 500);
+
+    // ↓ 클린업 함수 : 모든 새 sideEffect 함수가 실행되기 전 & 컴포넌트가 제거되기 전에 실행됨
+    return () => {
+      console.log("cleanup");
+      clearTimeout(identifier);
+    };
+  }, [emailIsValid, passwordIsValid]);
 
   const emailChangeHandler = (event) => {
     // setEnteredEmail(event.target.value);
     dispatchEmail({ type: "USER_INPUT", val: event.target.value });
 
-    setFormIsValid(event.target.value.includes("@") && passwordState.isValid);
+    // setFormIsValid(event.target.value.includes("@") && passwordState.isValid);
   };
 
   const passwordChangeHandler = (event) => {
     // setEnteredPassword(event.target.value);
     dispatchPassword({ type: "USER_INPUT", val: event.target.value });
 
-    setFormIsValid(event.target.value.trim().length > 6 && emailState.isValid);
+    // setFormIsValid(event.target.value.trim().length > 6 && emailState.isValid);
   };
 
   const validateEmailHandler = () => {
