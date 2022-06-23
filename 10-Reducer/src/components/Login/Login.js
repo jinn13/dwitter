@@ -55,13 +55,13 @@ const Login = (props) => {
   useEffect(() => {
     const identifier = setTimeout(() => {
       // 클린업 함수로 인해 오직 한번만 실행된다.
-      console.log("Checking fiorm validity~!~!");
+      console.log("▷ 폼 유효성 체크 중 ◁");
       setFormIsValid(emailIsValid && passwordIsValid);
     }, 500);
 
     // ↓ 클린업 함수 : 모든 새 sideEffect 함수가 실행되기 전 & 컴포넌트가 제거되기 전에 실행됨
     return () => {
-      console.log("cleanup");
+      console.log("★CLEANUP★");
       clearTimeout(identifier);
     };
   }, [emailIsValid, passwordIsValid]);
