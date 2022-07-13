@@ -1,0 +1,39 @@
+#section {
+  display: flex;
+  justify-content: center;
+}
+
+.title {
+  display: table;
+  background-color: lightcoral;
+  /* margin: auto 0; */
+  width: 200px;
+  text-align: center;
+}
+
+.title h2 {
+  display: table-cell;
+  vertical-align: middle;
+  background-color: aqua;
+}
+
+.content {
+  text-align: center;
+  color: gray;
+  background-color: lightcyan;
+}
+
+.date {
+  color: gray;
+  font-size: 30px;
+}
+
+.clock {
+  color: gray;
+  font-size: 100px;
+}
+
+#apm {
+  color: gray;
+  font-size: 50px;
+}
