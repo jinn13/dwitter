@@ -1,13 +1,15 @@
 import { useEffect, useState } from "react";
 import AppRouter from "components/Router";
-import { authService } from "fbase";
+// import { authService } from "fbase";
+import { getAuth, onAuthStateChanged } from "firebase/auth";
 
 function App() {
+  const [isLoggedIn, setIsLoggedIn] = useState(false);
   const [init, setInit] = useState(false);
-  const [isLoggedin, setIsLoggedIn] = useState(false);
 
   useEffect(() => {
-    authService.onAuthStateChanged((user) => {
+    const auth = getAuth();
+    onAuthStateChanged(auth, (user) => {
       if (user) {
         setIsLoggedIn(true);
       } else {
@@ -17,11 +19,9 @@ function App() {
     });
   }, []);
 
-  // setInterval(() => console.log(authService.currentUser), 2000);
-  // console.log(authService.currentUser);
   return (
     <>
-      {init ? <AppRouter isLoggedin={isLoggedin} /> : "initializing..."}
+      {init ? <AppRouter isLoggedIn={isLoggedIn} /> : "initializing..."}
       <footer>&copy; {new Date().getFullYear()} Dwitter</footer>
     </>
   );

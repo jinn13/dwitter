@@ -23,15 +23,12 @@ const Auth = () => {
     event.preventDefault();
     try {
       let data;
-
       if (newAccount) {
-        // create newAccount
         data = await authService.createUserWithEmailAndPassword(
           email,
           password
         );
       } else {
-        // Log in
         data = await authService.signInWithEmailAndPassword(email, password);
       }
       console.log(data);
@@ -39,6 +36,7 @@ const Auth = () => {
       console.log(error);
     }
   };
+
   return (
     <div>
       <form onSubmit={onSubmit}>
