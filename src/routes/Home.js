@@ -6,6 +6,7 @@ const Home = ({ userObj }) => {
   // console.log(userObj);
   const [dweet, setDweet] = useState("");
   const [dweets, setDweets] = useState([]);
+  const [attachment, setAttachment] = useState("");
 
   // const getDweets = async () => {
   //   const dbDweets = await dbService.collection("dweets").get();
@@ -47,6 +48,25 @@ const Home = ({ userObj }) => {
     setDweet(value);
   };
 
+  const onFileChange = (event) => {
+    // console.log(event.target.files);
+    const {
+      target: { files },
+    } = event;
+    const theFile = files[0];
+    const reader = new FileReader();
+    reader.onloadend = (finishedEvent) => {
+      // console.log(finishedEvent);
+      const {
+        currentTarget: { result },
+      } = finishedEvent;
+      setAttachment(result);
+    };
+    reader.readAsDataURL(theFile);
+  };
+
+  const onClearAttachment = () => setAttachment("");
+
   return (
     <>
       <form onSubmit={onSubmit}>
@@ -57,7 +77,14 @@ const Home = ({ userObj }) => {
           placeholder="What's on your mind?"
           maxLength={120}
         />
+        <input type="file" accept="image/*" onChange={onFileChange} />
         <input type="submit" value="Dweet" />
+        {attachment && (
+          <div>
+            <img src={attachment} width="50px" height="50px" />
+            <button onClick={onClearAttachment}>Clear</button>
+          </div>
+        )}
       </form>
       <div>
         {dweets.map((dweet) => (
