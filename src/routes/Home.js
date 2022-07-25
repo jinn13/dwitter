@@ -1,6 +1,8 @@
-import { dbService } from "fbase";
+import { dbService, storageService } from "fbase";
 import { React, useState, useEffect } from "react";
 import Dweet from "components/Dweet";
+import { v4 as uuidv4 } from "uuid";
+import { ref, uploadString, getDownloadURL } from "@firebase/storage";
 
 const Home = ({ userObj }) => {
   // console.log(userObj);
@@ -32,12 +34,26 @@ const Home = ({ userObj }) => {
 
   const onSubmit = async (event) => {
     event.preventDefault();
+    // const attachmentRef = storageService
+    //   .ref()
+    //   .child(`${userObj.uid}/${uuidv4()}`);
+    // const response = await attachmentRef.putString(attachment, "data_url");
+
+    let attachmentUrl = "";
+    if (attachment !== "") {
+      const fileRef = ref(storageService, `${userObj.uid}/${uuidv4()}`);
+      const response = await uploadString(fileRef, attachment, "data_url");
+      attachmentUrl = await getDownloadURL(response.ref);
+    }
+
     await dbService.collection("dweets").add({
       text: dweet,
       createdAt: Date.now(),
       creatorId: userObj.uid,
+      attachmentUrl,
     });
     setDweet("");
+    setAttachment("");
   };
 
   const onChange = (event) => {
