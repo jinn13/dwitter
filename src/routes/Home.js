@@ -30,9 +30,9 @@ const Home = ({ userObj }) => {
   // console.log(dweets);
 
   return (
-    <>
+    <div className="container">
       <DweetFactory userObj={userObj} />
-      <div>
+      <div style={{ marginTop: 30 }}>
         {dweets.map((dweet) => (
           <Dweet
             key={dweet.id}
@@ -41,7 +41,7 @@ const Home = ({ userObj }) => {
           />
         ))}
       </div>
-    </>
+    </div>
   );
 };
 
