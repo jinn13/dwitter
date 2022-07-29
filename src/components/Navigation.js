@@ -9,8 +9,7 @@ const Navigation = ({ userObj }) => {
       <ul style={{ display: "flex", justifyContent: "center", marginTop: 50 }}>
         <li>
           <Link to="/" style={{ marginRight: 10 }}>
-            <FontAwesomeIcon icom={faTwitter} color={"#04AAFF"} size="2x" />
-            <span>HOME</span>
+            <FontAwesomeIcon icon={faTwitter} color={"#04AAFF"} size="2x" />
           </Link>
         </li>
         <li>
