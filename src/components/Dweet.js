@@ -2,6 +2,8 @@ import { async } from "@firebase/util";
 import { dbService, storageService } from "fbase";
 import { useState } from "react";
 import { deleteObject, ref } from "firebase/storage";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faTrash, faPencilAlt } from "@fortawesome/free-solid-svg-icons";
 
 const Dweet = ({ dweetObj, isOwner }) => {
   const [editing, setEditing] = useState(false);
@@ -38,14 +40,23 @@ const Dweet = ({ dweetObj, isOwner }) => {
   };
 
   return (
-    <div>
+    <div className="nweet">
       {editing ? (
         <>
-          <form onSubmit={onSubmit}>
-            <input onChange={onChange} value={newDweet} required />
-            <input type="submit" value="Update Dweet" />
+          <form onSubmit={onSubmit} className="container nweetEdit">
+            <input
+              onChange={onChange}
+              value={newDweet}
+              required
+              placeholder="Edit your dweet"
+              autoFocus
+              className="formInput"
+            />
+            <input type="submit" value="Update Dweet" className="formBtn" />
           </form>
-          <button onClick={toggleEditing}>Cancel</button>
+          <button onClick={toggleEditing} className="formBtn cancelBtn">
+            Cancel
+          </button>
         </>
       ) : (
         <>
@@ -55,10 +66,14 @@ const Dweet = ({ dweetObj, isOwner }) => {
           )}
 
           {isOwner && (
-            <>
-              <button onClick={onDeleteClick}>Delete Dweet</button>
-              <button onClick={toggleEditing}>Edit Dweet</button>
-            </>
+            <div className="nweet__actions">
+              <span onClick={onDeleteClick}>
+                <FontAwesomeIcon icon={faTrash} />
+              </span>
+              <span onClick={toggleEditing}>
+                <FontAwesomeIcon icon={faPencilAlt} />
+              </span>
+            </div>
           )}
         </>
       )}
