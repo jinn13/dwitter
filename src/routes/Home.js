@@ -18,13 +18,16 @@ const Home = ({ userObj }) => {
 
   useEffect(() => {
     // getDweets();
-    dbService.collection("dweets").onSnapshot((snapshot) => {
-      const newArray = snapshot.docs.map((document) => ({
-        id: document.id,
-        ...document.data(),
-      }));
-      setDweets(newArray);
-    });
+    dbService
+      .collection("dweets")
+      .orderBy("createdAt", "desc")
+      .onSnapshot((snapshot) => {
+        const newArray = snapshot.docs.map((document) => ({
+          id: document.id,
+          ...document.data(),
+        }));
+        setDweets(newArray);
+      });
   }, []);
 
   // console.log(dweets);
