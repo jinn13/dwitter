@@ -1,0 +1,13 @@
+{
+  "files": {
+    "main.css": "/dwitter/static/css/main.ff37f1a6.css",
+    "main.js": "/dwitter/static/js/main.126bc30b.js",
+    "index.html": "/dwitter/index.html",
+    "main.ff37f1a6.css.map": "/dwitter/static/css/main.ff37f1a6.css.map",
+    "main.126bc30b.js.map": "/dwitter/static/js/main.126bc30b.js.map"
+  },
+  "entrypoints": [
+    "static/css/main.ff37f1a6.css",
+    "static/js/main.126bc30b.js"
+  ]
+}
