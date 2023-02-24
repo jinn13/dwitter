@@ -1,13 +1,14 @@
 {
   "files": {
-    "main.css": "/dwitter/static/css/main.ff37f1a6.css",
-    "main.js": "/dwitter/static/js/main.126bc30b.js",
+    "main.css": "/dwitter/static/css/main.1a5df9e0.css",
+    "main.js": "/dwitter/static/js/main.59f9f090.js",
+    "static/media/home-background2.png": "/dwitter/static/media/home-background2.aa6427011a78758ceff1.png",
     "index.html": "/dwitter/index.html",
-    "main.ff37f1a6.css.map": "/dwitter/static/css/main.ff37f1a6.css.map",
-    "main.126bc30b.js.map": "/dwitter/static/js/main.126bc30b.js.map"
+    "main.1a5df9e0.css.map": "/dwitter/static/css/main.1a5df9e0.css.map",
+    "main.59f9f090.js.map": "/dwitter/static/js/main.59f9f090.js.map"
   },
   "entrypoints": [
-    "static/css/main.ff37f1a6.css",
-    "static/js/main.126bc30b.js"
+    "static/css/main.1a5df9e0.css",
+    "static/js/main.59f9f090.js"
   ]
 }
